@@ -1,0 +1,69 @@
+<div class="container">
+  <h3>Salesman Commission Calculator</h3>
+
+  <form (ngSubmit)="calculateCommission()">
+    <div class="form-group">
+      <label for="name">Salesman Name</label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="salesman.name"
+        name="name"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="lastYearSales">Last Year Sales</label>
+      <input
+        type="number"
+        class="form-control"
+        [(ngModel)]="salesman.lastYearSales"
+        name="lastYearSales"
+        required
+      />
+    </div>
+
+    <div *ngFor="let record of salesman.salesRecords; let i = index">
+      <h5>Record {{ i + 1 }}</h5>
+      <div class="form-group">
+        <label for="brand">Brand</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="record.brand"
+          name="brand"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="carClass">Car Class</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="record.carClass"
+          name="carClass"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="numberOfCarsSold">Number of Cars Sold</label>
+        <input
+          type="number"
+          class="form-control"
+          [(ngModel)]="record.numberOfCarsSold"
+          name="numberOfCarsSold"
+          required
+        />
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Calculate Commission</button>
+  </form>
+
+  <div *ngIf="commission !== null">
+    <h4>Total Commission: {{ commission | currency }}</h4>
+  </div>
+</div>
